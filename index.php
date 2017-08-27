@@ -1,14 +1,17 @@
 <?php
+
+//Главная
+
 include 'db.php';
 
 echo "<div align='center'><h1>Список статей</h1></div><br>
       <div align='right'><a href='add_article.html'>Создать новую статью</a> </div>";
 
-//Количество выводимых статей
+//Количество выводимых статей на странице
 
 $countView = 5; 
 
-//Вычисляем с какого значения выводим
+//Вычисляем с какого значения выводим из базы
 
 if(isset($_GET['page'])){
     $pageNum = $_GET['page'];
@@ -47,7 +50,7 @@ foreach($Articles as $pole)
                 
                 }     
                 
-//Выводим пагинатор
+//Выводим стрелочки пагинатора
     
     echo "<ul>";
         if($pageNum > 1) { 

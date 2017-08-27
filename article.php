@@ -1,25 +1,28 @@
 <?php
 include 'db.php';
 
+//Выводим статью
+
 $id_Article=$_GET ['id'];
 
 
 $sql = mysqli_query($db,"SELECT * FROM Articles WHERE id_Article=$id_Article" ) or die("Ошибка");
 $pole= mysqli_fetch_array($sql);
 
-                        echo "
-                         <div align='center'>
-                            <table border='0' cellspacing='10' width='1000'>
-                                <tr><td align='center'><h1>".htmlspecialchars_decode($pole['Head'])."</h1></td></tr>
-                                <tr><td>Автор:    ".htmlspecialchars_decode($pole['Author'])."</td></tr>
-                                <tr><td>".htmlspecialchars_decode($pole['Content'])."</td></tr>
-                            </table>
-                         </div><br><br><br><br>
-                         <div align='right'><a href='change_article.php?id=$id_Article'>Изменить статью</a></div>
-                         <div align='right'><a href='index.php'>Вернуться на главную</a></div>";
+    echo "
+        <div align='center'>                 
+            <table border='0' cellspacing='10' width='1000'>                
+                <tr><td align='center'><h1>".htmlspecialchars_decode($pole['Head'])."</h1></td></tr>                
+                <tr><td>Автор:    ".htmlspecialchars_decode($pole['Author'])."</td></tr>                
+                <tr><td>".htmlspecialchars_decode($pole['Content'])."</td></tr>                
+            </table>                
+        </div><br><br><br><br>                 
+        <div align='right'><a href='change_article.php?id=$id_Article'>Изменить статью</a></div>                 
+        <div align='right'><a href='index.php'>Вернуться на главную</a></div>";                                     
 
                         
-                        
+//Выводим форму для комментариев
+    
  echo <<<EOD
     <form action="insert_note.php" method="POST">
         <div align="center">
@@ -34,7 +37,9 @@ $pole= mysqli_fetch_array($sql);
     </form>  
 
 EOD;
-    
+ 
+//Выводим сами комментарии 
+ 
 if ($result=mysqli_query($db, "SELECT * FROM Komments WHERE id_Article=$id_Article"))
     
     {    

@@ -1,8 +1,13 @@
 <?php
+
+//Добавляем комменты
+
 if (isset ($_POST['Author']) && isset ($_POST['Content'])){
     
     
         include 'db.php';
+        
+        //Убираем спец сиволы
         
         $Author=htmlspecialchars($_POST['Author']);
         $Content=htmlspecialchars($_POST['Content']);
